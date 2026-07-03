@@ -1,0 +1,7 @@
+.Footer {
+  background: var(--preto);
+  color: var(--cinza);
+  width: 100%;
+  padding: 10px 0;
+  text-align: center;
+}

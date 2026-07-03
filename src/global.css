@@ -1,0 +1,27 @@
+:root {
+  --cinza: #ebebec;
+  --preto: #272727;
+  --rosa: #f06197;
+  --verde: #36b59f;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--cinza);
+}
+
+body,
+input,
+textarea,
+button {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+}
