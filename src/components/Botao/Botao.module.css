@@ -1,0 +1,14 @@
+.Botao {
+  background: var(--verde);
+  border: 1px solid var(--preto);
+  padding: 0.25px 0.75px;
+  color: var(--cinza);
+}
+
+.Botao[tipo="primario"] {
+  background: var(--verde);
+}
+
+.Botao[tipo="secundario"] {
+  background: var(--rosa);
+}

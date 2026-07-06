@@ -1,5 +1,6 @@
 import './App.css'
 import {Cabecalho, Conteudo, Footer} from './components'
+import { Inicial } from './pages/inicial/inicial.jsx'
 
 function App() {
 
@@ -7,7 +8,7 @@ function App() {
     <>  
       <Cabecalho nomeUsuario="Alison" />
       <Conteudo>
-        <p>Este é o conteúdo da página.</p>
+        <Inicial />
       </Conteudo>
       <Footer nomeUsuario="Alison" />
     </>

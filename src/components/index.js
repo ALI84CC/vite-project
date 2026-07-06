@@ -1,3 +1,7 @@
 export * from './cabecalho'
 export * from './conteudo'
+export * from './FormcriarTarefas'
+export * from './CampoTexto'
+export * from './Botao'
+export * from './FormcriarTarefas'
 export * from './footer'
