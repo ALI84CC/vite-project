@@ -1,17 +1,16 @@
-import './App.css'
-import {Cabecalho, Conteudo, Footer} from './components'
-import { Inicial } from './pages/inicial/inicial.jsx'
+import { BrowserRouter} from 'react-router-dom'
+import { Router } from './Router'
 
-function App() {
+import './App.css'
+
+const App = () => {
 
   return (
     <>  
-      <Cabecalho nomeUsuario="Alison" />
-      <Conteudo>
-        <Inicial />
-      </Conteudo>
-      <Footer nomeUsuario="Alison" />
+     <BrowserRouter>
+      <Router />
+     </BrowserRouter>
     </>
  )   
  }
-export default App
+export  {App}

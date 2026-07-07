@@ -1,2 +1,2 @@
-
-export * from './ListaTarefas'
+export * from './inicial'
+export * from '../../components/ListaTarefas'
