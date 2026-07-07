@@ -2,9 +2,11 @@ import style from './Footer.module.css'
 
 const Footer = (props) => {
     const { nomeUsuario} = props
+
+    const anoAtual = new Date().getFullYear()
   return (
     <div className={style.Footer}>
-     React básico - 2026 - {nomeUsuario}
+     React básico - {anoAtual} - {nomeUsuario}
     </div>
   )
 }   

@@ -1,1 +1,2 @@
-export * from './page/inicial.jsx'
+
+export * from './ListaTarefas'

@@ -1,12 +1,11 @@
-import { Botao } from "../Botao/Botao"
-import { CampoTexto } from "../CampoTexto"
-
+import { Botao, CampoTexto } from "../../components"
 import style from './FormCriarTarefas.module.css'
+
 const FormCriarTarefas = () => {
     return (
         <form className={style.FormCriarTarefas}>
            <CampoTexto />
-           <Botao texto="Criar Tarefa" />
+           <Botao texto="+" />
          </form> 
     )
 }

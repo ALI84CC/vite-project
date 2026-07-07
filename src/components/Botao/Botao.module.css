@@ -1,7 +1,7 @@
 .Botao {
   background: var(--verde);
   border: 1px solid var(--preto);
-  padding: 0.25px 0.75px;
+  padding: 0.15rem 0.85rem;
   color: var(--cinza);
 }
 
