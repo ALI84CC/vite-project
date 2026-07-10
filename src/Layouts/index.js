@@ -1,1 +1,1 @@
-export * from '../Layouts/LayoutPadrao'
+export * from './LayoutPadrao/LayoutPadrao'
