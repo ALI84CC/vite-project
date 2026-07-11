@@ -14,8 +14,8 @@ const ListaTarefas = () => {
             )}
            {tarefas.map(item =>(
             <ListaTarefaItem 
-                item ={item.id} 
                 key={item.id} 
+                id ={item.id} 
                 nome={item.nome}
             /> 
           ))} 

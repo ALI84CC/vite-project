@@ -1,11 +1,11 @@
 import { createContext, useState } from "react";
 
-const AppContext = createContext({})
+export const AppContext = createContext({}) 
 
 export const AppContextProvider = (props) =>{
     const{ children } = props
 
-    const [criador , setCriador] = useState('Alison')
+    const [criador] = useState('Alison')
 
     const [tarefas, setTarefas ] = useState( [
         {id: 1 , nome:'Item 1'},
@@ -14,29 +14,25 @@ export const AppContextProvider = (props) =>{
     ]
     ) 
 
-    const adicionarTarefa = (nomeTarefa) =>{
-          setTarefas(estadoAtual =>{
-        const tarefa = {
-            id:estadoAtual.length + 1,
-            nome: nomeTarefa
-        }
-
-        return[
+    const adicionarTarefa = (nomeTarefa) => {
+        setTarefas(estadoAtual => [
             ...estadoAtual,
-            tarefa,
-        ]
-        })
+            {
+                id: estadoAtual.length > 0 ? Math.max(...estadoAtual.map(t => t.id)) + 1 : 1,
+                nome: nomeTarefa
+            }
+        ]);
+};
+    const removerTarefa = (idTarefa) => {
+        setTarefas(estadoAtual => estadoAtual.filter(tarefa => tarefa.id !== idTarefa));
+};
+    const editarTarefa = (idTarefa, novoNome) =>{
+        setTarefas(estadoAtual => estadoAtual.map(tarefa => 
+            tarefa.id  === idTarefa ? {...tarefa, nome: novoNome} : tarefa
+        ) )
+
     }
 
-    const removerTarefa = (idTarefa) =>{
-        setTarefas(estadoAtual =>{
-            const tarefasAtualizadas = estadoAtual.filter(tarefa => tarefa.id != idTarefa)
-
-            return[
-                ...tarefasAtualizadas
-            ]
-        })
-    }
 
     return(
         <AppContext.Provider value={{
@@ -44,10 +40,11 @@ export const AppContextProvider = (props) =>{
             tarefas,
             adicionarTarefa,
             removerTarefa,
+            editarTarefa,
         }}>
             {children}
         </AppContext.Provider>
     )
 }
 
-export default AppContextProvider
+export default AppContext

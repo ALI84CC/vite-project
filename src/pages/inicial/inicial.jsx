@@ -1,5 +1,6 @@
 
-import { FormCriarTarefas, ListaTarefas } from "../../components"
+import { FormCriarTarefas, ListaTarefas} from "../../components"
+
 
 import style from "./inicial.module.css"
 
