@@ -3,6 +3,7 @@
   border: 1px solid var(--preto);
   padding: 0.15rem 0.85rem;
   color: var(--cinza);
+  cursor: pointer;
 }
 
 .Botao[tipo="primario"] {
