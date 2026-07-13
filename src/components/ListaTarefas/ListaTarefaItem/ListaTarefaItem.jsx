@@ -1,23 +1,25 @@
 import { Botao, TIPO_BOTAO } from "../../Botao"
 import  {useAppContext}  from '../../../hooks'
 
-
 import style from './listaTarefaItem.module.css'
 import { useState } from "react"
 
-const ListaTarefaItem = ({id, nome}) =>{
-    const { removerTarefa, editarTarefa } = useAppContext()
-    
-    const [estaEditando, setEstaEditando] = useState(false)
-    const [textoDigitado, setTextoDigitado] = useState(nome)
+const ListaTarefaItem =(props) =>{
 
-   const salvarEdicao = () => {
-        if (textoDigitado.trim() !== "") {
-            editarTarefa(id, textoDigitado) // Salva no contexto global
-            setEstaEditando(false) // Volta para o modo de leitura
-        }
-    }
+const { id, nome} = props
 
+const {removerTarefa, editarTarefa } = useAppContext()   
+const [estaEditando, setEstaEditando] = useState(false)
+const [textoDigitado, setTextoDigitado] = useState(nome)
+
+const onBlurTarefa = (event) =>{
+
+    const nomeTarefa = event.currentTarget.value
+
+    editarTarefa(id,nomeTarefa)
+
+    setEstaEditando(false)
+}
 
     return(
          <li className={style.ListaTarefaItem}>
@@ -27,8 +29,8 @@ const ListaTarefaItem = ({id, nome}) =>{
                     type="text" 
                     value={textoDigitado} 
                     onChange={(e) => setTextoDigitado(e.target.value)}
-                    onBlur={salvarEdicao} // Salva se clicar fora do input [4]
-                    onKeyDown={(e) => e.key === 'Enter' && salvarEdicao()} // Salva ao apertar Enter
+                    onBlur= {onBlurTarefa} // Salva se clicar fora do input [4]
+                    onKeyDown={(e) => e.key === 'Enter'} // Salva ao apertar Enter
                     autoFocus
                 />
             ) : (

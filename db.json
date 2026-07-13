@@ -1,7 +1,17 @@
 {
-    "tarefas": [
-        {"id": 1 , "nome":"Item 1"},
-        {"id": 2 , "nome":"Item 2"},
-        {"id": 3 , "nome":"Item 3"}
-    ]
+  "tarefas": [
+    {
+      "nome": "Item 1",
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "nome": "Item 2"
+    },
+    {
+      "id": "3",
+      "nome": "Item 3"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
