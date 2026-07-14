@@ -31,8 +31,8 @@ export const AppContextProvider = (props) =>{
     carregarTarefas()
     },[])
     
-    const adicionarTarefa = async (nomeTarefa) => {
-        setAdicionandoTarefa(true)
+    const adicionarTarefa = async (idTarefa,nomeTarefa) => {
+        setAdicionandoTarefa(idTarefa)
          try { 
             const {data} = await api.post("./tarefas", {nome: nomeTarefa})
 
@@ -48,6 +48,7 @@ export const AppContextProvider = (props) =>{
             //     id: estadoAtual.length > 0 ? Math.max(...estadoAtual.map(t => t.id)) + 1 : 1,
             //     nome: nomeTarefa
             // }
+            setAdicionandoTarefa(null)
     };
     const removerTarefa = async (idTarefa) => {
         setExcluindoTarefaId(idTarefa)
