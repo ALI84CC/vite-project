@@ -1,60 +1,57 @@
-import { Botao, TIPO_BOTAO } from "../../Botao"
-import  {useAppContext}  from '../../../hooks'
-import { Loading } from "../../Loading"
+import { Botao, TIPO_BOTAO } from "../../Botao";
+import { useAppContext } from "../../../hooks";
+import { Loading } from "../../Loading";
 
-import style from './listaTarefaItem.module.css'
-import { useState } from "react"
+import style from "./listaTarefaItem.module.css";
+import { useState } from "react";
 
-const ListaTarefaItem =(props) =>{
+const ListaTarefaItem = (props) => {
+  const { id, nome } = props;
 
-const { id, nome} = props
+  const { removerTarefa, editarTarefa, excluindoTarefaId, editandoTarefaId } =
+    useAppContext();
+  const [estaEditando, setEstaEditando] = useState(false);
+  const [textoDigitado, setTextoDigitado] = useState(nome);
 
-const {removerTarefa, editarTarefa, excluindoTarefaId, editandoTarefaId } = useAppContext()   
-const [estaEditando, setEstaEditando] = useState(false)
-const [textoDigitado, setTextoDigitado] = useState(nome)
+  const onBlurTarefa = (event) => {
+    const nomeTarefa = event.currentTarget.value;
+    editarTarefa(id, nomeTarefa);
+    setEstaEditando(false);
+  };
 
-const onBlurTarefa = (event) =>{
+  const loadingEstaEditando = editandoTarefaId == id;
+  const loadingEstaDeletando = excluindoTarefaId == id;
 
-    const nomeTarefa = event.currentTarget.value
+  return (
+    <li className={style.ListaTarefaItem}>
+      {loadingEstaEditando || estaEditando ? (
+        // Se estiver editando, mostra um input para o usuário digitar
+        <input
+          type="text"
+          value={textoDigitado}
+          onChange={(e) => setTextoDigitado(e.target.value)}
+          onBlur={onBlurTarefa} // Salva se clicar fora do input
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.currentTarget.blur(); // Dispara o onBlur ao apertar Enter
+            }
+          }}
+          autoFocus
+        />
+      ) : (
+        // Se não estiver editando, mostra o span com o nome da tarefa
+        <span onDoubleClick={() => setEstaEditando(true)}>{nome}</span>
+      )}
 
-    editarTarefa(id,nomeTarefa)
+      {loadingEstaEditando && <Loading />}
 
-    setEstaEditando(false)
-}
+      <Botao
+        texto={loadingEstaDeletando ? <Loading /> : "-"}
+        tipo={TIPO_BOTAO.SECONDARIO}
+        onClick={() => removerTarefa(id)}
+      />
+    </li>
+  );
+};
 
-const loadingEstaEditando = editandoTarefaId == id
-
-const loadingEstaDeletando = excluindoTarefaId == id
-
-    return(
-         <li className={style.ListaTarefaItem}>
-             {(loadingEstaEditando || estaEditando) && (
-                // Se estiver editando, mostra um input para o usuário digitar
-                <input 
-                    type="text" 
-                    value={textoDigitado} 
-                    onChange={(e) => setTextoDigitado(e.target.value)}
-                    onBlur= {onBlurTarefa} // Salva se clicar fora do input [4]
-                    onKeyDown={(e) => e.key === 'Enter'} // Salva ao apertar Enter
-                    autoFocus
-                />
-            )} : (
-                {!loadingEstaEditando && !estaEditando && (
-                    <span onDoubleClick={() => setEstaEditando(true)}>{nome}</span>
-                )}
-          )
-
-            {loadingEstaEditando && (
-                 <Loading />
-            )}
-    
-            <Botao 
-                texto={loadingEstaDeletando ? <Loading /> :'-'} 
-                tipo={TIPO_BOTAO.SECONDARIO} 
-                onClick = {() => removerTarefa(id)}
-            />
-         </li>
-    )
-}
-
-export {ListaTarefaItem}
+export { ListaTarefaItem };

@@ -1,31 +1,28 @@
-import { useAppContext } from "../../hooks"
-import { Loading } from "../Loading"
-import { ListaTarefaItem } from "./ListaTarefaItem"
+import { useAppContext } from "../../hooks";
+import { Loading } from "../Loading";
+import { ListaTarefaItem } from "./ListaTarefaItem";
 
-import style from "./ListaTarefas.module.css"
+import style from "./ListaTarefas.module.css";
 
 const ListaTarefas = () => {
+  const { tarefas, carregandoTarefas } = useAppContext();
 
-    const {tarefas, carregandoTarefas} = useAppContext()
+  return (
+    <ul className={style.ListaTarefas}>
+      {carregandoTarefas && (
+        <p>
+          Carregando...
+          <Loading />
+        </p>
+      )}
+      {!carregandoTarefas && !tarefas.length && (
+        <p>Não há tarefas cadastradas !!</p>
+      )}
+      {tarefas.map((item) => (
+        <ListaTarefaItem key={item.id} id={item.id} nome={item.nome} />
+      ))}
+    </ul>
+  );
+};
 
-    return(
-        <ul className={style.ListaTarefas}>
-            {carregandoTarefas && (
-                <p>Carregando...<Loading /></p>
-            )}
-            {!carregandoTarefas && !tarefas.length && (
-                <p>Não há tarefas cadastradas !!</p>
-            )}
-           {tarefas.map(item =>(
-            <ListaTarefaItem 
-                key={item.id} 
-                id ={item.id} 
-                nome={item.nome}
-            /> 
-          ))} 
-           
-        </ul>
-    )
-}
-
-export {ListaTarefas} 
+export { ListaTarefas };
