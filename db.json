@@ -1,16 +1,20 @@
 {
   "tarefas": [
     {
-      "nome": "Item 1",
-      "id": "1"
+      "nome": "item 1 atualizado",
+      "id": "hgsZWh8aITI"
     },
     {
-      "id": "2",
-      "nome": "Item 2"
+      "nome": "item 2",
+      "id": "612rGuILdJs"
     },
     {
-      "id": "3",
-      "nome": "Item 3"
+      "nome": "item 3",
+      "id": "e4OLKAb3jh0"
+    },
+    {
+      "nome": "item 4",
+      "id": "u_K3hp6t4I0"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

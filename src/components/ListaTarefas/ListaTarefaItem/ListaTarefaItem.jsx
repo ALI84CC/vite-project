@@ -30,7 +30,7 @@ const ListaTarefaItem = (props) => {
           type="text"
           value={textoDigitado}
           onChange={(e) => setTextoDigitado(e.target.value)}
-          onBlur={onBlurTarefa} // Salva se clicar fora do input
+          onBlur={onBlurTarefa} 
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               e.currentTarget.blur(); // Dispara o onBlur ao apertar Enter
